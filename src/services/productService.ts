@@ -1,7 +1,12 @@
 import axios from "axios";
-import type { ProductResponse } from "@/types/product";
+import type { Product,ProductResponse } from "@/types/product";
 
 export const getProducts = async (): Promise<ProductResponse> => {
   const res = await axios.get("https://dummyjson.com/products");
+  return res.data;
+};
+// productService.ts
+export const getProductById = async (id: string): Promise<Product> => {
+  const res = await axios.get(`https://dummyjson.com/products/${id}`);
   return res.data;
 };

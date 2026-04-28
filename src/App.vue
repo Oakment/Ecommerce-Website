@@ -9,7 +9,7 @@ import ProductList from './components/ProductList.vue';
 
 <template>
   <NavBar />
-  <ProductList />
+  <router-view />
 
   <main>
     </main>
