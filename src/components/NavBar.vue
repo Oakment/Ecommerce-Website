@@ -154,9 +154,9 @@
 
               <div class="hidden lg:ml-8 lg:flex">
                 <a href="#" class="flex items-center text-gray-700 hover:text-gray-800">
-                  <img src="https://tailwindcss.com/plus-assets/img/flags/flag-canada.svg" alt="" class="block h-auto w-5 shrink-0" />
-                  <span class="ml-3 block text-sm font-medium">CAD</span>
-                  <span class="sr-only">, change currency</span>
+          <button @click="isDark = !isDark" class="px-3 py-1 rounded">
+                  {{ isDark ? "☀️" : "🌙" }}
+            </button>
                 </a>
               </div>
 
@@ -185,7 +185,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -216,4 +216,17 @@ const navigation = {
 }
 
 const open = ref(false)
+
+const isDark = ref(localStorage.getItem("theme") === "dark");
+
+watch(isDark, (val) => {
+  const html = document.documentElement;
+  if (val) {
+    html.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    html.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
+});
 </script>

@@ -32,18 +32,38 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="p-6">
+  <div  class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6">
     <p v-if="loading">Loading...</p>
     <p v-else-if="error">{{ error }}</p>
 
-    <div v-else-if="product">
-      <img :src="product.thumbnail" :alt="product.title" class="w-64" />
-      <h1 class="text-2xl font-bold">{{ product.title }}</h1>
-      <p class="text-gray-600">{{ product.description }}</p>
-      <p class="text-lg font-semibold">${{ product.price }}</p>
-    </div>
-    <button @click="add" class="bg-blue-500 text-white p-2 mt-4">
+    <div v-else-if="product" class="grid md:grid-cols-2 gap-8">
+  <!-- Image -->
+  <img
+    :src="product.thumbnail"
+    class="w-full rounded-2xl shadow-md"
+  />
+
+  <!-- Info -->
+  <div>
+    <h1 class="text-3xl font-bold mb-4">
+      {{ product.title }}
+    </h1>
+
+    <p class="text-gray-600 dark:text-gray-400 mb-4">
+      {{ product.description }}
+    </p>
+
+    <p class="text-2xl text-blue-600 font-bold mb-6">
+      ${{ product.price }}
+    </p>
+
+    <button
+      @click="add"
+      class="bg-blue-600 hover:bg-blue-700 active:scale-95 transition text-white px-6 py-3 rounded-xl"
+    >
       Add to Cart
-  </button>
+    </button>
+  </div>
+    </div>
   </div>
 </template>
