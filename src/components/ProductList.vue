@@ -29,10 +29,10 @@ onMounted(async () => {
 <input
   v-model="search"
   placeholder="Search products..."
-  class="border p-2 mb-4 w-full"
+  class="w-full mb-6 px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
 />
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   <ProductCard
     v-for="p in filteredProducts"
     :key="p.id"

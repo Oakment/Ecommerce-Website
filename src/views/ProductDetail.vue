@@ -3,6 +3,15 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import type { Product } from "@/types/product";
+import { useCartStore } from "@/stores/cart";
+
+const cart = useCartStore();
+
+const add = () => {
+  if (product.value) {
+    cart.addToCart(product.value);
+  }
+};
 
 const route = useRoute();
 const product = ref<Product | null>(null);
@@ -33,5 +42,8 @@ onMounted(async () => {
       <p class="text-gray-600">{{ product.description }}</p>
       <p class="text-lg font-semibold">${{ product.price }}</p>
     </div>
+    <button @click="add" class="bg-blue-500 text-white p-2 mt-4">
+      Add to Cart
+  </button>
   </div>
 </template>
